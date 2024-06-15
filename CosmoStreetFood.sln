@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{09F4BF5B-D48E-4ADB-B318-D6A455E3C352}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateaway", "Gateaway", "{064C15E0-8DA7-44BD-AD28-26D196DF7FC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{1DE3BF9D-BAC9-40F2-BF9F-DDBAAC457F14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8FAFE064-AD6F-4FDF-982B-4400636F9107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmo.Services.CouponAPI", "Cosmo.Services.CouponAPI\Cosmo.Services.CouponAPI.csproj", "{286847D7-CEC3-4609-9A56-C18561EF8750}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{286847D7-CEC3-4609-9A56-C18561EF8750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{286847D7-CEC3-4609-9A56-C18561EF8750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{286847D7-CEC3-4609-9A56-C18561EF8750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{286847D7-CEC3-4609-9A56-C18561EF8750}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{286847D7-CEC3-4609-9A56-C18561EF8750} = {8FAFE064-AD6F-4FDF-982B-4400636F9107}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7608577D-78C8-45E1-8D76-C4D1F66AD00E}
+	EndGlobalSection
+EndGlobal
