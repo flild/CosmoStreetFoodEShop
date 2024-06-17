@@ -8,7 +8,7 @@ using static Azure.Core.HttpHeader;
 
 namespace Cosmo.Services.CouponAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/coupon")]
     [ApiController]
     public class CouponAPIController : ControllerBase
     {
