@@ -23,6 +23,10 @@ namespace Cosmo.Web.Controllers
             {
                 list = JsonConvert.DeserializeObject<List<CouponDto>>(Convert.ToString(responce.Result));
             }
+			else
+			{
+				TempData["error"] = responce?.Message;
+			}
 
             return View(list);
         }
@@ -39,9 +43,13 @@ namespace Cosmo.Web.Controllers
 				ResponseDto? responce = await _couponService.CreateCouponAsync(model);
 				if (responce != null && responce.IsSuccess)
 				{
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction(nameof(CouponIndex));
 				}
-			}
+                else
+                {
+                    TempData["error"] = responce?.Message;
+                }
+            }
 			return View(model);
 		}
 
@@ -53,7 +61,26 @@ namespace Cosmo.Web.Controllers
 				CouponDto? model = JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(responce.Result));
                 return View(model);
 			}
-			return NotFound();
+            else
+            {
+                TempData["error"] = responce?.Message;
+            }
+            return NotFound();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> CouponDelete(CouponDto couponDto)
+		{
+			ResponseDto? responce = await _couponService.DeleteCouponAsync(couponDto.CouponID);
+			if (responce != null && responce.IsSuccess)
+			{
+				return RedirectToAction(nameof(CouponIndex));
+			}
+            else
+            {
+                TempData["error"] = responce?.Message;
+            }
+            return View(couponDto);
 		}
 	}
 }

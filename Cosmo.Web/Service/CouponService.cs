@@ -25,7 +25,7 @@ namespace Cosmo.Web.Service
         {
             return await _baseService.SendAsync(new RequestDto()
             {
-                Apitype = SD.ApiType.GET,
+                Apitype = SD.ApiType.DELETE,
                 Url = SD.CouponAPIBase + "/api/coupon/" + id,
             });
         }
@@ -54,7 +54,7 @@ namespace Cosmo.Web.Service
         {
             return await _baseService.SendAsync(new RequestDto()
             {
-                Apitype = SD.ApiType.DELETE,
+                Apitype = SD.ApiType.GET,
                 Url = SD.CouponAPIBase + "/api/coupon/" + id,
 
             });

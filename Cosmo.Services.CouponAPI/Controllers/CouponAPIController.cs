@@ -37,8 +37,7 @@ namespace Cosmo.Services.CouponAPI.Controllers
             }
             return _response;
         }
-        [HttpGet]
-        [Route("id:int")]
+        [HttpGet("{id}")]
         public ResponseDto Get(int id)
         {
             try
@@ -53,7 +52,8 @@ namespace Cosmo.Services.CouponAPI.Controllers
             }
             return _response;
         }
-        [HttpGet]
+		//mb fix that to ("[HttpGet]{code}")
+		[HttpGet]
         [Route("GetByCode/{code}")]
         public ResponseDto GetByCode(string code)
         {
@@ -104,8 +104,7 @@ namespace Cosmo.Services.CouponAPI.Controllers
             return _response;
         }
 
-        [HttpDelete]
-        [Route("id:int")]
+        [HttpDelete("{id}")]
         public ResponseDto Delete(int id)
         {
             try
