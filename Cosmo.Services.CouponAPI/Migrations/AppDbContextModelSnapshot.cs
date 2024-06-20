@@ -41,7 +41,7 @@ namespace Cosmo.Services.CouponAPI.Migrations
 
                     b.HasKey("CouponID");
 
-                    b.ToTable("Coupons");
+                    b.ToTable("Coupons", (string)null);
                 });
 #pragma warning restore 612, 618
         }

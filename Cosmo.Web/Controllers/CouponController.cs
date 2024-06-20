@@ -43,8 +43,9 @@ namespace Cosmo.Web.Controllers
 				ResponseDto? responce = await _couponService.CreateCouponAsync(model);
 				if (responce != null && responce.IsSuccess)
 				{
-					return RedirectToAction(nameof(CouponIndex));
-				}
+                    TempData["success"] = "Coupon created successfully";
+                    return RedirectToAction(nameof(CouponIndex));
+                }
                 else
                 {
                     TempData["error"] = responce?.Message;
@@ -74,7 +75,8 @@ namespace Cosmo.Web.Controllers
 			ResponseDto? responce = await _couponService.DeleteCouponAsync(couponDto.CouponID);
 			if (responce != null && responce.IsSuccess)
 			{
-				return RedirectToAction(nameof(CouponIndex));
+                TempData["success"] = "Coupon deleted successfully";
+                return RedirectToAction(nameof(CouponIndex));
 			}
             else
             {
