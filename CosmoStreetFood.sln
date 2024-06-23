@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmo.Services.CouponAPI", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmo.Web", "Cosmo.Web\Cosmo.Web.csproj", "{29DEE585-418E-439C-B425-C5B101AEFDBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.AuthAPI", "Mango.Services.AuthAPI\Mango.Services.AuthAPI.csproj", "{2DDAFC13-609B-429A-AD0F-045465EE226A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmo.Services.AuthAPI", "Mango.Services.AuthAPI\Cosmo.Services.AuthAPI.csproj", "{2DDAFC13-609B-429A-AD0F-045465EE226A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

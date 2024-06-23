@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Mango.Services.AuthAPI.Migrations
+namespace Cosmo.Services.AuthAPI.Migrations
 {
     /// <inheritdoc />
     public partial class addIdentityTables : Migration
