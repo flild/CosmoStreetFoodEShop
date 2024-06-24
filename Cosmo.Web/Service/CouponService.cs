@@ -17,7 +17,7 @@ namespace Cosmo.Web.Service
             {
                 Apitype = SD.ApiType.POST,
                 Data = couponDto,
-                Url = SD.CouponAPIBase + "/api/coupon/",
+                Url = SD.CouponAPIBase + "/api/coupon",
             });
         }
 

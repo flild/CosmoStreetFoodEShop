@@ -44,5 +44,18 @@ namespace Cosmo.Services.AuthAPI.Controllers
             _responce.Result = loginResponce;
             return Ok(_responce);
         }
+
+        [HttpPost("AssignRole")]
+        public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto model)
+        {
+            var assignRoleSuccessful = await _authService.AssignRole(model.Email, model.Role);
+            if (!assignRoleSuccessful)
+            {
+                _responce.IsSuccess = false;
+                _responce.Message = "Error encountered";
+                return BadRequest(_responce);
+            }
+            return Ok(_responce);
+        }
     }
 }

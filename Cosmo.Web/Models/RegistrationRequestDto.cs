@@ -1,4 +1,4 @@
-﻿namespace Cosmo.Services.AuthAPI.Models.Dto
+﻿namespace Cosmo.Web.Models
 {
     public class RegistrationRequestDto
     {
