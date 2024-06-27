@@ -50,7 +50,7 @@ namespace Cosmo.Services.AuthAPI.Service
             }
             //if user was found, generate jwt token
             var roles = await _userManager.GetRolesAsync(user);
-            var  token = _jwtTokenGenerator.GenerateToken(user, roles);
+            var token = _jwtTokenGenerator.GenerateToken(user, roles);
 
             UserDto userDto = new()
             {

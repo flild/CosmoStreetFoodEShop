@@ -2,6 +2,7 @@
 using Cosmo.Services.CouponAPI.Data;
 using Cosmo.Services.CouponAPI.Models;
 using Cosmo.Services.CouponAPI.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static Azure.Core.HttpHeader;
@@ -10,6 +11,7 @@ namespace Cosmo.Services.CouponAPI.Controllers
 {
     [Route("api/coupon")]
     [ApiController]
+    [Authorize]
     public class CouponAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
