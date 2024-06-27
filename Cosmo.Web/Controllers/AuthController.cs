@@ -31,7 +31,7 @@ namespace Cosmo.Web.Controllers
         public async Task<IActionResult> Login(LoginRequestDto obj)
         {
             ResponseDto responseDto = await _authService.LoginAsync(obj);
-
+            //на обычных пользователях багуля вылетает, надо смотреть
             if (responseDto != null && responseDto.IsSuccess)
             {
                 LoginResponseDto loginResponseDto = JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));

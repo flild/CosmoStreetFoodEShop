@@ -1,6 +1,7 @@
 using AutoMapper;
 using Cosmo.Services.CouponAPI;
 using Cosmo.Services.CouponAPI.Data;
+using Cosmo.Services.CouponAPI.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -46,31 +47,8 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+builder.addAppAuthetication();
 
-var settingsSction = builder.Configuration.GetSection("ApiSettings");
-
-var secret = settingsSction.GetValue<string>("Secret");
-var issuer = settingsSction.GetValue<string>("Issuer");
-var audience = settingsSction.GetValue<string>("Audience");
-
-var key = Encoding.ASCII.GetBytes(secret);
-builder.Services.AddAuthentication(x =>
-{
-    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(x =>
-{
-    x.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = true,
-        ValidIssuer = issuer,
-        ValidAudience = audience,
-        ValidateAudience = true,
-
-    };
-});
 builder.Services.AddAuthorization();
 
 var app = builder.Build();

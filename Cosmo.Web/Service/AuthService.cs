@@ -29,7 +29,7 @@ namespace Cosmo.Web.Service
                 Apitype = SD.ApiType.POST,
                 Data = loginRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/login",
-            });
+            }, withBearer: false);
         }
 
         public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto RegistrationRequestDto)
@@ -39,10 +39,10 @@ namespace Cosmo.Web.Service
                 Apitype = SD.ApiType.POST,
                 Data = RegistrationRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/register",
-            });
+            }, withBearer: false);
         }
 
-        public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
+        public async Task<ResponseDto?> SendAsync(RequestDto requestDto, bool withBearer = true)
         {
             throw new NotImplementedException();
         }
