@@ -85,5 +85,36 @@ namespace Cosmo.Web.Controllers
             }
             return View(productDto);
         }
+
+        public async Task<IActionResult> ProductEdit(int ProductID)
+        {
+            ResponseDto? responce = await _productService.GetProductByIdAsync(ProductID);
+            if (responce != null && responce.IsSuccess)
+            {
+                ProductDto? model = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(responce.Result));
+                return View(model);
+            }
+            else
+            {
+                TempData["error"] = responce?.Message;
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProductEdit(ProductDto productDto)
+        {
+            ResponseDto? responce = await _productService.UpdateProductsAsync(productDto);
+            if (responce != null && responce.IsSuccess)
+            {
+                TempData["success"] = "Product updated successfully";
+                return RedirectToAction(nameof(ProductIndex));
+            }
+            else
+            {
+                TempData["error"] = responce?.Message;
+            }
+            return View(productDto);
+        }
     }
 }
