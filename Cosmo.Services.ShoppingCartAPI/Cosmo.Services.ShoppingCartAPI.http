@@ -1,0 +1,6 @@
+@Cosmo.Services.ShoppingCartAPI_HostAddress = http://localhost:5017
+
+GET {{Cosmo.Services.ShoppingCartAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
