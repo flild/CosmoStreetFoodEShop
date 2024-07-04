@@ -44,6 +44,18 @@ namespace Cosmo.Web.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> EmailCart(CartDto cartDto)
+        {
+            ResponseDto? responce = await _cartService.EmailCart(cartDto);
+
+            if (responce != null && responce.IsSuccess)
+            {
+                TempData["Success"] = "притворимя, что письмо вам дошло";
+                return RedirectToAction(nameof(CartIndex));
+            }
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> RemoveCoupon(CartDto cartDto)

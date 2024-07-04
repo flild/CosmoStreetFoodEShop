@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Cosmo.MessageBus;
 using Cosmo.Services.ShoppingCartAPI.Data;
 using Cosmo.Services.ShoppingCartAPI.Models;
 using Cosmo.Services.ShoppingCartAPI.Models.Dto;
@@ -19,14 +20,18 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
         private IMapper _mapper;
         private IProductService _productService;
         private ICouponService _couponService;
+        private IConfiguration _configuration;
+        private readonly IMessageBus _messageBus;
 
-        CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService)
+        CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService, IMessageBus messageBus, IConfiguration configuration)
         {
             _db = db;
             _mapper = mapper;
             _response = new ResponseDto();
             _productService = productService;
             _couponService = couponService;
+            _messageBus = messageBus;
+            _configuration = configuration;
         }
 
         [HttpPost("GetCart/{userId}")]
@@ -67,6 +72,22 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
             }
             return _response;
         }
+        [HttpPost("EmailCartRequest")]
+        public async Task<object> EmailCartRequest([FromBody] CartDto cartDto)
+        {
+            try
+            {
+                await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCart"));
+                _response.Result = true;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+
         [HttpPost("ApplyCoupon")]
         public async Task<object> ApplyCoupon([FromBody] CartDto cartDto)
         {

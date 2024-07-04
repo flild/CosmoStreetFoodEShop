@@ -1,4 +1,5 @@
 using AutoMapper;
+using Cosmo.MessageBus;
 using Cosmo.Services.ShoppingCartAPI;
 using Cosmo.Services.ShoppingCartAPI.Data;
 using Cosmo.Services.ShoppingCartAPI.Extensions;
@@ -26,6 +27,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<BackendApiAuthrntificationHttpClientHandler>();
 builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IMessageBus, MessageBus>();
 builder.Services.AddHttpClient("Product", u => u.BaseAddress =
 new Uri(builder.Configuration["serviceUrls:CouponAPI"])).AddHttpMessageHandler<BackendApiAuthrntificationHttpClientHandler>();
 builder.Services.AddHttpClient("Coupon", u => u.BaseAddress =

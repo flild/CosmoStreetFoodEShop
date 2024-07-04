@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cosmo.MessageBus
 {
-    internal class MessageBus : IMessageBus
+    public class MessageBus : IMessageBus
     {
         private string connectionString = "not payed...";
         public async Task PublishMessage(object message, string topic_queue_name)
