@@ -1,6 +1,6 @@
 ﻿
 
-namespace Cosmo.Web.Models
+namespace Cosmo.Services.EmailAPI.Models.Dto
 {
     public class CartHeaderDto
     {

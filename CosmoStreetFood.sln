@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmo.Services.ProductAPI",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmo.Services.ShoppingCartAPI", "Cosmo.Services.ShoppingCartAPI\Cosmo.Services.ShoppingCartAPI.csproj", "{8CEF3EC4-D52C-4780-9709-AC0383AEE730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmo.MessageBus", "Cosmo.MessageBus\Cosmo.MessageBus.csproj", "{8A1E159D-8738-403E-9AAC-EB244A2F37E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmo.MessageBus", "Cosmo.MessageBus\Cosmo.MessageBus.csproj", "{8A1E159D-8738-403E-9AAC-EB244A2F37E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmo.Services.EmailAPI", "Cosmo.Services.EmailAPI\Cosmo.Services.EmailAPI.csproj", "{724FCCBB-2DD9-4337-BFE5-518EF05A5861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{8A1E159D-8738-403E-9AAC-EB244A2F37E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A1E159D-8738-403E-9AAC-EB244A2F37E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A1E159D-8738-403E-9AAC-EB244A2F37E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724FCCBB-2DD9-4337-BFE5-518EF05A5861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724FCCBB-2DD9-4337-BFE5-518EF05A5861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724FCCBB-2DD9-4337-BFE5-518EF05A5861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724FCCBB-2DD9-4337-BFE5-518EF05A5861}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{9B36AE28-3252-4855-BCEA-B63598DE11C0} = {8FAFE064-AD6F-4FDF-982B-4400636F9107}
 		{8CEF3EC4-D52C-4780-9709-AC0383AEE730} = {8FAFE064-AD6F-4FDF-982B-4400636F9107}
 		{8A1E159D-8738-403E-9AAC-EB244A2F37E1} = {1DE3BF9D-BAC9-40F2-BF9F-DDBAAC457F14}
+		{724FCCBB-2DD9-4337-BFE5-518EF05A5861} = {8FAFE064-AD6F-4FDF-982B-4400636F9107}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7608577D-78C8-45E1-8D76-C4D1F66AD00E}
