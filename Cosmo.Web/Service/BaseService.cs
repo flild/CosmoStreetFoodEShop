@@ -53,6 +53,7 @@ namespace Cosmo.Web.Service
                         message.Method = HttpMethod.Get;
                         break;
                 }
+                //https://localhost:7003/api/cart/Cartupsert
 
                 apiResponce = await client.SendAsync(message);
 

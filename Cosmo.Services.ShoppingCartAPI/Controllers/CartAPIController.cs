@@ -20,18 +20,18 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
         private IMapper _mapper;
         private IProductService _productService;
         private ICouponService _couponService;
-        private IConfiguration _configuration;
-        private readonly IMessageBus _messageBus;
+        private IConfiguration? _configuration;
+        private readonly IMessageBus? _messageBus;
 
-        CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService, IMessageBus messageBus, IConfiguration configuration)
+        public CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService)
         {
             _db = db;
             _mapper = mapper;
             _response = new ResponseDto();
             _productService = productService;
             _couponService = couponService;
-            _messageBus = messageBus;
-            _configuration = configuration;
+            //_messageBus = messageBus;
+            //_configuration = configuration;
         }
 
         [HttpPost("GetCart/{userId}")]
@@ -77,7 +77,7 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
         {
             try
             {
-                await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue"));
+                //await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue"));
                 _response.Result = true;
             }
             catch (Exception ex)

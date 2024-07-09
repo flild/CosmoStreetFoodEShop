@@ -3,11 +3,11 @@ using System.Net.Http.Headers;
 
 namespace Cosmo.Services.ShoppingCartAPI.Utility
 {
-    public class BackendApiAuthrntificationHttpClientHandler : DelegatingHandler
+    public class BackendApiAuthenticationHttpClientHandler : DelegatingHandler
     {
         private readonly IHttpContextAccessor _accessor;
 
-        public BackendApiAuthrntificationHttpClientHandler(IHttpContextAccessor accessor)
+        public BackendApiAuthenticationHttpClientHandler(IHttpContextAccessor accessor)
         {
             _accessor = accessor;
         }
