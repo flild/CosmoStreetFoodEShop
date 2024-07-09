@@ -34,6 +34,7 @@ namespace Cosmo.Web.Service
                 message.RequestUri = new Uri(requestDto.Url);
                 if (requestDto.Data != null)
                 {
+                    var jsonstring = JsonConvert.SerializeObject(requestDto.Data);
                     message.Content = new StringContent(JsonConvert.SerializeObject(requestDto.Data), Encoding.UTF8, "application/json");
                 }
                 HttpResponseMessage? apiResponce = null;
@@ -67,6 +68,8 @@ namespace Cosmo.Web.Service
                         return new() { IsSuccess = false, Message = "Unauthorized" };
                     case System.Net.HttpStatusCode.InternalServerError:
                         return new() { IsSuccess = false, Message = "Internal Server Error" };
+                    case System.Net.HttpStatusCode.BadRequest:
+                        return new() { IsSuccess = false, Message = "Bad request" };
                     default:
                         var apiContent = await apiResponce.Content.ReadAsStringAsync();
                         var apiResponceDto = JsonConvert.DeserializeObject<ResponseDto>(apiContent);

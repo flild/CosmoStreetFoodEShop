@@ -66,7 +66,7 @@ namespace Cosmo.Web.Service
             {
                 Apitype = SD.ApiType.PUT,
                 Data = productDto,
-                Url = SD.ProductAPIBase + "/api/product/",
+                Url = SD.ProductAPIBase + "/api/product",
             });
         }
     }

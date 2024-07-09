@@ -53,3 +53,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+
+//todo list
+// авторизация с помощью гугла и тд.
+// продукты
+// поставить на хост
+// 
