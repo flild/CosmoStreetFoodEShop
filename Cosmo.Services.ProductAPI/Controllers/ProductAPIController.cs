@@ -29,8 +29,8 @@ namespace Cosmo.Services.ProductAPI.Controllers
         {
             try
             {
-                IEnumerable<Product> coupons = _db.Products.ToList();
-                _response.Result = _mapper.Map<IEnumerable<Product>>(coupons);
+                IEnumerable<Product> products = _db.Products.ToList();
+                _response.Result = _mapper.Map<IEnumerable<Product>>(products);
             }
             catch (Exception ex)
             {
@@ -44,8 +44,8 @@ namespace Cosmo.Services.ProductAPI.Controllers
         {
             try
             {
-                Product coupon = _db.Products.First(c => c.ProductId ==  id);
-                _response.Result = _mapper.Map<ProductDto>(coupon);
+                Product product = _db.Products.First(c => c.ProductId ==  id);
+                _response.Result = _mapper.Map<ProductDto>(product);
             }
             catch (Exception ex)
             {
@@ -57,14 +57,14 @@ namespace Cosmo.Services.ProductAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
-        public ResponseDto Post([FromBody] ProductDto couponPostDto)
+        public ResponseDto Post([FromBody] ProductDto productPostDto)
         {
             try
             {
-                Product coupon = _mapper.Map<Product>(couponPostDto);
+                Product coupon = _mapper.Map<Product>(productPostDto);
                 _db.Products.Add(coupon);
                 _db.SaveChanges();
-                _response.Result = couponPostDto;
+                _response.Result = productPostDto;
             }
             catch (Exception ex)
             {
@@ -75,14 +75,14 @@ namespace Cosmo.Services.ProductAPI.Controllers
         }
         [HttpPut]
         [Authorize(Roles = "ADMIN")]
-        public ResponseDto Put([FromBody] ProductDto couponDto)
+        public ResponseDto Put([FromBody] ProductDto productDto)
         {
             try
             {
-                Product coupon = _mapper.Map<Product>(couponDto);
-                _db.Products.Update(coupon);
+                Product product = _mapper.Map<Product>(productDto);
+                _db.Products.Update(product);
                 _db.SaveChanges();
-                _response.Result = couponDto;
+                _response.Result = productDto;
             }
             catch (Exception ex)
             {
@@ -98,8 +98,8 @@ namespace Cosmo.Services.ProductAPI.Controllers
         {
             try
             {
-                Product coupon = _db.Products.First(c => c.ProductId == id);
-                _db.Products.Remove(coupon);
+                Product product = _db.Products.First(c => c.ProductId == id);
+                _db.Products.Remove(product);
                 _db.SaveChanges();
             }
             catch (Exception ex)
