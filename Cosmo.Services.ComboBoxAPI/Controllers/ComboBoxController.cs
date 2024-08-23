@@ -31,12 +31,18 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
         {
             IEnumerable<Product> productsMain = _mapper.Map<IEnumerable<Product>>(await _productService.GetProducts());
             IEnumerable<Product> productsCopy = _db.Products.ToList();
-            var exceptProductList = productsMain.Except(productsCopy, new ProductComparer()).ToList();
+            var newProductList = productsMain.Except(productsCopy, new ProductComparer()).ToList();
+            var toDeleteProductList = productsCopy.Except(productsMain, new ProductComparer()).ToList();
 
-            //решение для долбаеба
-            foreach (Product product in exceptProductList)
+            //
+            foreach ( Product product in toDeleteProductList)
             {
-                _db.Add(product);
+                _db.Products.Remove(product);
+            }
+            //
+            foreach (Product product in newProductList)
+            {
+                _db.Products.Add(product);
             }
             _db.SaveChanges();
             return _response;
