@@ -47,21 +47,6 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
             _db.SaveChanges();
             return _response;
         }
-        [HttpGet("GetCombos")]
-        public async Task<ResponseDto> GetCombos()
-        {
-            try
-            {
-                IEnumerable<Combo> combos = _db.Combos.ToList();
-                _response.Result = _mapper.Map<IEnumerable<ComboDto>>(combos);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
-        }
 
         [HttpGet("GetSelfProduct")]
         public async Task<ResponseDto> GetSelfProducts()
@@ -78,5 +63,74 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
             }
             return _response;
         }
+        [HttpGet("GetCombos")]
+        public async Task<ResponseDto> GetCombos()
+        {
+            try
+            {
+                IEnumerable<Combo> combos = _db.Combos.ToList();
+                _response.Result = _mapper.Map<IEnumerable<ComboDto>>(combos);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpPost]
+        [Route("PostCombo")]
+        public ResponseDto PostCombo([FromBody] ComboDto comboDto)
+        {
+            try
+            {
+                Combo combo = _mapper.Map<Combo>(comboDto);
+                _db.Combos.Add(combo);
+                _db.SaveChanges();
+                _response.Result = comboDto;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpPost]
+        [Route("UpdateCombo")]
+        public ResponseDto UpdateCombo([FromBody] ComboDto comboDto)
+        {
+            try
+            {
+                _db.Combos.Update(_mapper.Map<Combo>(comboDto));
+                _db.SaveChanges();
+                _response.Result = comboDto;
+            }
+            catch (Exception ex)
+            { 
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+
+        [HttpGet]
+        [Route("DeleteCombo/{id}")]
+        public ResponseDto DeleteCombo(int id) 
+        {
+            try
+            {
+                Combo combo = _db.Combos.First(c => c.ComboId == id);
+                _db.Combos.Remove(combo);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return _response;
+        }
+
     }
 }
