@@ -78,6 +78,23 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
             }
             return _response;
         }
+        [HttpGet]
+        [Route("Combo/{id}")]
+        public async Task<ResponseDto> GetComboById(int id)
+        {
+            try
+            {
+                Combo combo = _db.Combos.First(c => c.ComboId == id);
+                _response.Result = _mapper.Map<ComboDto>(combo);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+            
+        }
         [HttpPost]
         [Route("PostCombo")]
         public ResponseDto PostCombo([FromBody] ComboDto comboDto)
