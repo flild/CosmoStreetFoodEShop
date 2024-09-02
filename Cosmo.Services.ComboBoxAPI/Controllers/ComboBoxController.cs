@@ -6,6 +6,7 @@ using Cosmo.Services.ComboBoxAPI.Service.IService;
 using Cosmo.Services.ComboBoxAPI.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cosmo.Services.ComboBoxAPI.Controllers
 {
@@ -49,7 +50,7 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
         }
 
         [HttpGet("GetSelfProduct")]
-        public async Task<ResponseDto> GetSelfProducts()
+        public ResponseDto GetSelfProducts()
         {
             try
             {
@@ -64,7 +65,7 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
             return _response;
         }
         [HttpGet("GetCombos")]
-        public async Task<ResponseDto> GetCombos()
+        public ResponseDto GetCombos()
         {
             try
             {
@@ -84,7 +85,7 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
         {
             try
             {
-                Combo combo = _db.Combos.First(c => c.ComboId == id);
+                Combo combo = await _db.Combos.FirstAsync(c => c.ComboId == id);
                 _response.Result = _mapper.Map<ComboDto>(combo);
             }
             catch (Exception ex)
@@ -143,8 +144,8 @@ namespace Cosmo.Services.ComboBoxAPI.Controllers
             }
             catch (Exception ex)
             {
-
-                throw;
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
             }
             return _response;
         }

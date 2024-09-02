@@ -11,7 +11,9 @@ namespace Cosmo.Services.ComboBoxAPI
             var mappingConfig = new MapperConfiguration( config =>
             {
                 config.CreateMap<ComboDto, Combo>().ReverseMap();
+                config.CreateMap<ComboPreviewDto, Combo>();
                 config.CreateMap<ProductDto, Product>().ReverseMap();
+                config.CreateMap<ProductPreviewDto, Product>();
             });
             return mappingConfig;
         }

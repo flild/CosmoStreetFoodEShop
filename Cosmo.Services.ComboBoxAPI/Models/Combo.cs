@@ -8,10 +8,11 @@ namespace Cosmo.Services.ComboBoxAPI.Models
     {
         [Key]
         public int ComboId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int Discount { get; set; }
         [NotMapped]
-        public List<Product> Products { get; set; } = new List<Product>();
+        public List<Product> Products { get; set; } = new();
+        
 
     }
 }

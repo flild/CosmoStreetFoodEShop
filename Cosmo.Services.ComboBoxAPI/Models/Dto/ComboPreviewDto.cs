@@ -3,11 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cosmo.Services.ComboBoxAPI.Models.Dto
 {
-    public class ComboDto
+    public class ComboPreviewDto
     {
         public int ComboId { get; set; }
         public string? Name { get; set; }
         public int Discount { get; set; }
-        public List<ProductPreviewDto> Products { get; set; } = new();
     }
 }

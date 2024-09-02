@@ -50,7 +50,7 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
                 foreach (var item in cart.CartDetails)
                 {
                     item.Product = productDtos.FirstOrDefault(u => u.ProductId == item.ProductId);
-                    cart.CartHeader.CartTotal += (item.Count * item.Product.Price);
+                    cart.CartHeader.CartTotal += item.Count * item.Product.Price;
                 }
                 //apply coupon if any
                 if(!string.IsNullOrEmpty(cart.CartHeader.CouponCode)) 
@@ -73,7 +73,7 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
             return _response;
         }
         [HttpPost("EmailCartRequest")]
-        public async Task<object> EmailCartRequest([FromBody] CartDto cartDto)
+        public object EmailCartRequest([FromBody] CartDto cartDto)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
                 var cartFromDb = await _db.CartHeaders.FirstAsync(u => u.UserId == cartDto.CartHeader.UserId);
                 cartFromDb.CouponCode =cartDto.CartHeader.CouponCode;
                 _db.CartHeaders.Update(cartFromDb);
-                _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 _response.Result = true;
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
                 var cartFromDb = await _db.CartHeaders.FirstAsync(u => u.UserId == cartDto.CartHeader.UserId);
                 cartFromDb.CouponCode = "";
                 _db.CartHeaders.Update(cartFromDb);
-                _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 _response.Result = true;
             }
             catch (Exception ex)

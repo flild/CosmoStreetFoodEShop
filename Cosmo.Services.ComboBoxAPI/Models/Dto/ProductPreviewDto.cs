@@ -1,7 +1,7 @@
 ﻿
 namespace Cosmo.Services.ComboBoxAPI.Models.Dto
 {
-    public class ProductDto
+    public class ProductPreviewDto
     {
         public int ProductId { get; set; }
         public string? Name { get; set; }
@@ -9,6 +9,5 @@ namespace Cosmo.Services.ComboBoxAPI.Models.Dto
         public string? Description { get; set; }
         public string? CategoryName { get; set; }
         public string? ImageUrl { get; set; }
-        public List<ComboPreviewDto> Combos { get; set; } = new();
     }
 }
