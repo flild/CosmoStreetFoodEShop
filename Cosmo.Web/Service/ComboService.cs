@@ -13,9 +13,13 @@ namespace Cosmo.Web.Service
             _baseService = baseService;
         }
 
-        public Task<ResponseDto?> DeleteComboByIdAsync(int id)
+        public async Task<ResponseDto?> DeleteComboByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                Apitype = SD.ApiType.GET,
+                Url = SD.ProductAPIBase + "/api/DeleteCombo" + id,
+            });
         }
 
         public async Task<ResponseDto?> GetAllCombos()
@@ -45,24 +49,34 @@ namespace Cosmo.Web.Service
             });
         }
 
-        public async Task<ResponseDto?> GetProductByIdAsync(int id)
+
+        public async Task<ResponseDto?> PostComboAsync(ComboDto comboDto)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                Apitype = SD.ApiType.POST,
+                Data = comboDto,
+                Url = SD.ProductAPIBase + "/api/PostCombo",
+            });
         }
 
-        public Task<ResponseDto?> PostComboAsync(ComboDto comboDto)
+        public async Task<ResponseDto?> UpdateComboAsync(ComboDto comboDto)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                Apitype = SD.ApiType.POST,
+                Data = comboDto,
+                Url = SD.ProductAPIBase + "/api/UpdateCombo",
+            });
         }
 
-        public Task<ResponseDto?> UpdateComboAsync(ComboDto comboDto)
+        public async Task<ResponseDto?> UpdateProductsDbAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseDto?> UpdateProductsDbAsync()
-        {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                Apitype = SD.ApiType.GET,
+                Url = SD.ProductAPIBase + "/api/UpdateProducts",
+            });
         }
     }
 }

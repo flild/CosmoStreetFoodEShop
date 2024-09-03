@@ -5,7 +5,6 @@ namespace Cosmo.Web.Service.IService
 {
     public interface IComboService
     {
-        Task<ResponseDto?> GetProductByIdAsync(int id);
         Task<ResponseDto?> GetAllProductAsync();
         Task<ResponseDto?> GetComboByIdAsync(int id);
         Task<ResponseDto?> GetAllCombos();
