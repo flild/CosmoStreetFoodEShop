@@ -7,7 +7,7 @@ namespace Cosmo.Web.Service.IService
     {
         Task<ResponseDto?> GetAllProductAsync();
         Task<ResponseDto?> GetComboByIdAsync(int id);
-        Task<ResponseDto?> GetAllCombos();
+        Task<ResponseDto?> GetAllCombosAsync();
         Task<ResponseDto?> UpdateProductsDbAsync();
         Task<ResponseDto?> PostComboAsync(ComboDto comboDto);
         Task<ResponseDto?> UpdateComboAsync(ComboDto comboDto);

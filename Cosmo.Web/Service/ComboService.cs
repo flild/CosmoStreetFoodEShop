@@ -22,7 +22,7 @@ namespace Cosmo.Web.Service
             });
         }
 
-        public async Task<ResponseDto?> GetAllCombos()
+        public async Task<ResponseDto?> GetAllCombosAsync()
         {
             return await _baseService.SendAsync(new RequestDto()
             {
