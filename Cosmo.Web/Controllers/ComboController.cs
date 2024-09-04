@@ -72,7 +72,7 @@ namespace Cosmo.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CouponDelete(ComboDto comboDto)
+        public async Task<IActionResult> ComboDelete(ComboDto comboDto)
         {
             ResponseDto? responce = await _comboService.DeleteComboByIdAsync(comboDto.ComboId);
             if (responce != null && responce.IsSuccess)
