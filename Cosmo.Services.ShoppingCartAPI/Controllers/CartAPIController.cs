@@ -50,6 +50,8 @@ namespace Cosmo.Services.ShoppingCartAPI.Controllers
                 foreach (var item in cart.CartDetails)
                 {
                     item.Product = productDtos.FirstOrDefault(u => u.ProductId == item.ProductId);
+
+                    //null reference
                     cart.CartHeader.CartTotal += item.Count * item.Product.Price;
                 }
                 //apply coupon if any
