@@ -2,6 +2,7 @@
 using Cosmo.Services.ProductAPI.Data;
 using Cosmo.Services.ProductAPI.Models;
 using Cosmo.Services.ProductAPI.Models.Dto;
+using Cosmo.Services.ProductAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,100 +15,43 @@ namespace Cosmo.Services.ProductAPI.Controllers
     
     public class ProductAPIController : ControllerBase
     {
-        private readonly AppDbContext _db;
         private ResponseDto _response;
-        private IMapper _mapper;
-        public ProductAPIController(AppDbContext db, IMapper mapper)
+        private IProductService _productService;
+        public ProductAPIController(IProductService productService)
         {
-            _db = db;
-            _mapper = mapper;
+            _productService = productService;
             _response = new ResponseDto();
         }
 
         [HttpGet]
         public ResponseDto Get()
         {
-            try
-            {
-                IEnumerable<Product> products = _db.Products.ToList();
-                _response.Result = _mapper.Map<IEnumerable<Product>>(products);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
+            return _productService.GetAllProducts();
         }
         [HttpGet("{id}")]
         public ResponseDto Get(int id)
         {
-            try
-            {
-                Product product = _db.Products.First(c => c.ProductId ==  id);
-                _response.Result = _mapper.Map<ProductDto>(product);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
+            return _productService.GetProductById(id);
         }
 
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         public ResponseDto Post([FromBody] ProductDto productPostDto)
         {
-            try
-            {
-                Product coupon = _mapper.Map<Product>(productPostDto);
-                _db.Products.Add(coupon);
-                _db.SaveChanges();
-                _response.Result = productPostDto;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
+            return _productService.CreateProduct(productPostDto);
         }
         [HttpPut]
         [Authorize(Roles = "ADMIN")]
         public ResponseDto Put([FromBody] ProductDto productDto)
         {
-            try
-            {
-                Product product = _mapper.Map<Product>(productDto);
-                _db.Products.Update(product);
-                _db.SaveChanges();
-                _response.Result = productDto;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
+            return _productService.UpdateProduct(productDto);
         }
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
         public ResponseDto Delete(int id)
         {
-            try
-            {
-                Product product = _db.Products.First(c => c.ProductId == id);
-                _db.Products.Remove(product);
-                _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
+            return _productService.DeleteProduct(id);
         }
     }
 }
