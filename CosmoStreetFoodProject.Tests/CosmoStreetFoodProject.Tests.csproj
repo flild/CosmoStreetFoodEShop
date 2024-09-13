@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cosmo.Services.ProductAPI\Cosmo.Services.ProductAPI.csproj" />
+    <ProjectReference Include="..\Cosmo.Web\Cosmo.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
